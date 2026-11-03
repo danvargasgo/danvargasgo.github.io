@@ -89,6 +89,15 @@ li:hover .note, li:focus-within .note { color: var(--text); transform: translate
 li:hover .where, li:focus-within .where { color: var(--text); }
 li:hover .where::after, li:focus-within .where::after { opacity: 1; transform: none; }
 
+.peek {
+  position: fixed; left: 0; top: 0; width: 340px; aspect-ratio: 800 / 499; z-index: 10; pointer-events: none;
+  opacity: 0; transition: opacity .2s; border: 1px solid var(--line); background: #fff; overflow: hidden;
+  box-shadow: 0 24px 50px -22px rgba(0, 0, 0, .4);
+}
+.peek.show { opacity: 1; }
+.peek img { display: block; width: 100%; height: 100%; object-fit: cover; }
+@media (hover: none), (pointer: coarse) { .peek { display: none; } }
+
 @media (max-width: 600px) {
   header { margin-bottom: 70px; }
   header .right { gap: 14px; }
@@ -124,14 +133,14 @@ li:hover .where::after, li:focus-within .where::after { opacity: 1; transform: n
   <section class="blk center">
   <h2 class="rise" style="--i:6">Products</h2>
   <ul>
-    <li class="rise" style="--i:7;--c:var(--coral)"><a href="https://www.prismrun.ai" target="_blank" rel="noopener"><span class="t">Prism</span><span class="note">Workflow builder for AI automations</span><span class="where">prismrun.ai</span></a></li>
-    <li class="rise" style="--i:8;--c:var(--teal)"><a href="https://www.getglass.ai" target="_blank" rel="noopener"><span class="t">Glass</span><span class="note">An AI assistant you can see through</span><span class="where">getglass.ai</span></a></li>
-    <li class="rise" style="--i:9;--c:var(--amber)"><a href="https://www.fundcfo.ai" target="_blank" rel="noopener"><span class="t">FundCFO.ai</span><span class="note">Skills for running finance at a VC fund, as a Claude plugin</span><span class="where">fundcfo.ai</span></a></li>
-    <li class="rise" style="--i:10;--c:var(--violet)"><a href="https://www.newsrun.ai" target="_blank" rel="noopener"><span class="t">Newsrun</span><span class="note">AI powered newsletters from professional templates</span><span class="where">newsrun.ai</span></a></li>
-    <li class="rise" style="--i:11;--c:var(--lime)"><a href="https://www.vcgigs.co" target="_blank" rel="noopener"><span class="t">VCgigs</span><span class="note">The venture capital job board</span><span class="where">vcgigs.co</span></a></li>
+    <li class="rise" style="--i:7;--c:var(--coral)"><a href="https://www.prismrun.ai" data-img="img/prism.jpg" target="_blank" rel="noopener"><span class="t">Prism</span><span class="note">A simple framework for agentic AI</span><span class="where">prismrun.ai</span></a></li>
+    <li class="rise" style="--i:8;--c:var(--teal)"><a href="https://www.getglass.ai" data-img="img/glass.jpg" target="_blank" rel="noopener"><span class="t">Glass</span><span class="note">An AI assistant you can see through</span><span class="where">getglass.ai</span></a></li>
+    <li class="rise" style="--i:9;--c:var(--amber)"><a href="https://www.fundcfo.ai" data-img="img/fundcfo.jpg" target="_blank" rel="noopener"><span class="t">FundCFO.ai</span><span class="note">Skills for running finance at a VC fund, as a Claude plugin</span><span class="where">fundcfo.ai</span></a></li>
+    <li class="rise" style="--i:10;--c:var(--violet)"><a href="https://www.newsrun.ai" data-img="img/newsrun.jpg" target="_blank" rel="noopener"><span class="t">Newsrun</span><span class="note">AI research briefings, delivered on your schedule</span><span class="where">newsrun.ai</span></a></li>
+    <li class="rise" style="--i:11;--c:var(--lime)"><a href="https://www.vcgigs.co" data-img="img/vcgigs.jpg" target="_blank" rel="noopener"><span class="t">VCgigs</span><span class="note">The venture capital job board</span><span class="where">vcgigs.co</span></a></li>
     <li class="rise" style="--i:12;--c:var(--coral)"><a href="https://www.thehive.so" target="_blank" rel="noopener"><span class="t">The Hive</span><span class="note">Questions answered by AI, refined by community notes</span><span class="where">thehive.so</span></a></li>
-    <li class="rise" style="--i:13;--c:var(--teal)"><a href="https://www.whoisraising.com" target="_blank" rel="noopener"><span class="t">WhoIsRaising</span><span class="note">VC and PE funds currently raising capital</span><span class="where">whoisraising.com</span></a></li>
-    <li class="rise" style="--i:14;--c:var(--amber)"><a href="https://www.definedaction.com/" target="_blank" rel="noopener"><span class="t">DAF</span><span class="note">The open standard for agentic harnesses</span><span class="where">definedaction.com</span></a></li>
+    <li class="rise" style="--i:13;--c:var(--teal)"><a href="https://www.whoisraising.com" data-img="img/whoisraising.jpg" target="_blank" rel="noopener"><span class="t">WhoIsRaising</span><span class="note">VC and PE funds currently raising capital</span><span class="where">whoisraising.com</span></a></li>
+    <li class="rise" style="--i:14;--c:var(--amber)"><a href="https://www.definedaction.com/" data-img="img/daf.jpg" target="_blank" rel="noopener"><span class="t">DAF</span><span class="note">The open standard for agentic harnesses</span><span class="where">definedaction.com</span></a></li>
   </ul>
   </section>
 
@@ -139,7 +148,7 @@ li:hover .where::after, li:focus-within .where::after { opacity: 1; transform: n
   <h2 class="rise" style="--i:15">Open source</h2>
   <ul>
     <li class="rise" style="--i:16;--c:var(--violet)"><a href="https://www.npmjs.com/package/daf-sdk" target="_blank" rel="noopener"><span class="t">daf-sdk</span><span class="note">Agentic harness in TypeScript, on npm</span><span class="where">npm</span></a></li>
-    <li class="rise" style="--i:17;--c:var(--lime)"><a href="https://github.com/danvargasgo/lendloop" target="_blank" rel="noopener"><span class="t">LendLoop</span><span class="note">Next.js, Clerk, Convex and n8n, with signed workflows</span><span class="where">github</span></a></li>
+    <li class="rise" style="--i:17;--c:var(--lime)"><a href="https://github.com/danvargasgo/lendloop" data-img="img/lendloop.jpg" target="_blank" rel="noopener"><span class="t">LendLoop</span><span class="note">Next.js, Clerk, Convex and n8n, with signed workflows</span><span class="where">github</span></a></li>
     <li class="rise" style="--i:18;--c:var(--coral)"><a href="https://github.com/danvargasgo/platform-lab" target="_blank" rel="noopener"><span class="t">Platform Lab</span><span class="note">Docker, Terraform, Kubernetes, Helm, Grafana</span><span class="where">github</span></a></li>
   </ul>
   </section>
@@ -164,8 +173,44 @@ li:hover .where::after, li:focus-within .where::after { opacity: 1; transform: n
   </ul>
   </section>
 </main>
+<div class="peek" id="peek" aria-hidden="true"><img alt="" width="800" height="499"></div>
 <script>
 (function () {
+
+  // Hover a project and a screenshot of it follows the cursor.
+  var peek = document.getElementById("peek");
+  var shot = peek.querySelector("img");
+  var rows = document.querySelectorAll("a[data-img]");
+  if (matchMedia("(hover: hover) and (pointer: fine)").matches && rows.length) {
+    var W = 340, H = 212, x = 0, y = 0, tx = 0, ty = 0, on = false, raf = 0;
+    var still = matchMedia("(prefers-reduced-motion: reduce)").matches;
+    rows.forEach(function (a) { new Image().src = a.dataset.img; });
+    var frame = function () {
+      x += (tx - x) * (still ? 1 : 0.18);
+      y += (ty - y) * (still ? 1 : 0.18);
+      peek.style.transform = "translate3d(" + x + "px," + y + "px,0)";
+      raf = on || Math.abs(tx - x) > 0.5 || Math.abs(ty - y) > 0.5 ? requestAnimationFrame(frame) : 0;
+    };
+    var aim = function (e) {
+      var nx = e.clientX + 28;
+      if (nx + W > innerWidth - 16) nx = e.clientX - 28 - W;
+      tx = Math.max(16, nx);
+      ty = Math.max(16, Math.min(e.clientY - H / 2, innerHeight - H - 16));
+    };
+    rows.forEach(function (a) {
+      a.addEventListener("mouseenter", function (e) {
+        shot.src = a.dataset.img;
+        aim(e);
+        if (!on) { x = tx; y = ty; }
+        on = true;
+        peek.classList.add("show");
+        if (!raf) raf = requestAnimationFrame(frame);
+      });
+      a.addEventListener("mousemove", aim);
+      a.addEventListener("mouseleave", function () { on = false; peek.classList.remove("show"); });
+    });
+  }
+
   // Local time in Bogotá, so a visitor sees where I am and when.
   var clock = document.getElementById("clock");
   function tick() {
